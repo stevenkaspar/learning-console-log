@@ -8,7 +8,7 @@
           url: 'http://localhost:3000',
         }).done(function(response) {
           try {
-            var html = response.data.map(function(item){
+            var html = response.map(function(item){
               return '<li>' + item.label + '</li>';
             }).join('')
             $('#ResultsWrapper').html('<ul>' + html + '</ul>');
