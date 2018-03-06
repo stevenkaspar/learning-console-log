@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Debugging Network Requests</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+      function makeAjaxRequest() {
+        $.ajax({
+          url: 'http://localhost:3000',
+        }).done(function(response) {
+          try {
+            var html = response.data.map(function(item){
+              return '<li>' + item.label + '</li>';
+            }).join('')
+            $('#ResultsWrapper').html('<ul>' + html + '</ul>');
+          }
+          catch(err) {
+            console.warn(err);
+            $('#ResultsWrapper').html('Ajax Error: ' + err.message);
+          }
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="makeAjaxRequest()">Make Ajax Request</button>
+    <div id='ResultsWrapper'></div>
+  </body>
+</html>
